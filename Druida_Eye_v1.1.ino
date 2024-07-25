@@ -1,13 +1,10 @@
 #include "TSL2561.h"
-//#include "Adafruit_AS726x.h"
 #include <EEPROM.h>
 #include "Adafruit_TCS34725.h"
 #define uvSensorPin A2
 #define TCS34725_INTEGRATIONTIME TCS34725_INTEGRATIONTIME_50MS
 #define TCS34725_GAIN TCS34725_GAIN_1X
 
-//Adafruit_AS726x ams;
-//uint16_t sensorValues[AS726x_NUM_CHANNELS];
 TSL2561 tsl(TSL2561_ADDR_FLOAT); 
 Adafruit_TCS34725 tcs = Adafruit_TCS34725(TCS34725_INTEGRATIONTIME, TCS34725_GAIN);
 
@@ -26,7 +23,6 @@ int totalPPF = 0;
 float wattChip;
 
 int valorUV;
-
 
 
 void setup() {
@@ -51,7 +47,7 @@ void setup() {
 
   // Configuración del sensor TSL2561
  if (tsl.begin()) {
-    Serial.println("Found sensor");
+    Serial.println("TSL 2561 Found sensor");
   } else {
     Serial.println("No sensor?");
     while (1);
