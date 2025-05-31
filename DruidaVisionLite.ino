@@ -8,6 +8,7 @@
 #define EEPROM_SIZE 12
 #include <vector>
 #include <cmath>
+#include "SPIFFS.h"
 
 // Configuración de la red WiFi en modo AP
 const char* ssid = "DruidaVision";
@@ -297,6 +298,11 @@ void setup() {
     server.on("/medir", handleMedir);
 
     server.begin();
+    
+    if (!SPIFFS.begin(true)) {
+      Serial.println("Error al montar SPIFFS");
+      return;
+    }
     Serial.println("Servidor iniciado.");
 
    
